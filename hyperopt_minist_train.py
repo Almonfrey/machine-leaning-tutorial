@@ -23,8 +23,8 @@ def create_tf_dataset(X, y, batch_size):
 # Train the model
 def train_model(params):
     
+    # Wandb configurations
     project_name = 'hyperopt_mnist'
-    # wandb log loop execution. Fold level logging
     wandb.init(project=project_name)
     wandb_callback = wandb.keras.WandbCallback(save_model=False)
 
@@ -85,7 +85,7 @@ def train_model(params):
 def objective(params):
     return train_model(params)
 
-wandb.login()
+wandb.login(relogin=False)
 
 # Define search space for hyperparameters
 space = {
