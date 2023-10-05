@@ -71,6 +71,8 @@ def train_model(params):
         callbacks=[early_stopping, wandb_callback]
     )
 
+    wandb.finish()
+
     # Get the last iteration validation loss as hyperopt score
     eval_score = history.history["val_loss"][-1]
     
@@ -82,6 +84,8 @@ def train_model(params):
 # Objective function to minimize (negative accuracy)
 def objective(params):
     return train_model(params)
+
+wandb.login()
 
 # Define search space for hyperparameters
 space = {
