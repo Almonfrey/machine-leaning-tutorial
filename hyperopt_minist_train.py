@@ -25,7 +25,12 @@ def train_model(params):
     
     # Wandb configurations
     project_name = 'hyperopt_mnist'
-    wandb.init(project=project_name)
+    out_dir = 'machine-learning-tutorial'
+    wandb.init(
+        dir=out_dir,
+        config=params,
+        project=project_name
+    )
     wandb_callback = wandb.keras.WandbCallback(save_model=False)
 
     # Load MNIST dataset
